@@ -1,10 +1,10 @@
-import TestScriptSetupPage from '~/pages/test-script-setup.vue';
+import TestScriptSetupPage from '~/pages/script-setup.vue';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
 
-describe('TestScriptSetupPage', () => {
+describe('ScriptSetupPage', () => {
   it('should render', async () => {
     const wrapper = await mountSuspended(TestScriptSetupPage, {
-      route: '/test-script-setup',
+      route: '/script-setup',
     });
     expect(wrapper.text()).toBe('greeting: Hello, world!');
   });
