@@ -39,7 +39,7 @@ describe('OptionsApiPage', () => {
       ).toBe('Hello, method');
     });
 
-    it('should render greeting in computed', () => {
+    it('should render greeting in methods', () => {
       expect(wrapper.find('[data-testid="greeting-in-methods"]').text()).toBe(
         'Hello, method',
       );
@@ -89,7 +89,7 @@ describe('OptionsApiPage', () => {
       ).toBe('Hello, method');
     });
 
-    it('should render greeting in computed', () => {
+    it('should render greeting in methods', () => {
       expect(wrapper.find('[data-testid="greeting-in-methods"]').text()).toBe(
         'Hello, method',
       );
