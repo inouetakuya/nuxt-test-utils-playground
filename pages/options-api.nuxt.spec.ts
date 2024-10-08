@@ -14,25 +14,40 @@ describe('OptionsApiPage', () => {
 
     it('should render greeting in setup', () => {
       expect(wrapper.find('[data-testid="greeting-in-setup"]').text()).toBe(
-        'greetingInSetup: Hello, setup!',
+        'Hello, setup',
       );
     });
 
-    it('should render greeting in asyncData', () => {
-      expect(
-        wrapper.find('[data-testid="greeting-in-async-data"]').text(),
-      ).toBe('greetingInAsyncData: Hello, asyncData!');
-    });
-
-    it('should render greeting in data', () => {
-      expect(wrapper.find('[data-testid="greeting-in-data"]').text()).toBe(
-        'greetingInData: Hello, data!',
+    it('should render greeting in data and asyncData', () => {
+      expect(wrapper.find('[data-testid="greeting-in-data1"]').text()).toBe(
+        'Hello, data1',
+      );
+      expect(wrapper.find('[data-testid="greeting-in-data2"]').text()).toBe(
+        'Hello, overwritten by asyncData',
       );
     });
 
     it('should render greeting in computed', () => {
       expect(wrapper.find('[data-testid="greeting-in-computed"]').text()).toBe(
-        'greetingInComputed: Hello, computed property!',
+        'Hello, computed property',
+      );
+      expect(wrapper.find('[data-testid="computed-data1"]').text()).toBe(
+        'Hello, data1',
+      );
+      expect(
+        wrapper.find('[data-testid="computed-greeting-in-methods"]').text(),
+      ).toBe('Hello, method');
+    });
+
+    it('should render greeting in computed', () => {
+      expect(wrapper.find('[data-testid="greeting-in-methods"]').text()).toBe(
+        'Hello, method',
+      );
+      expect(wrapper.find('[data-testid="return-data1"]').text()).toBe(
+        'Hello, data1',
+      );
+      expect(wrapper.find('[data-testid="return-computed-data1"]').text()).toBe(
+        'Hello, data1',
       );
     });
   });
@@ -49,25 +64,40 @@ describe('OptionsApiPage', () => {
 
     it('should render greeting in setup', () => {
       expect(wrapper.find('[data-testid="greeting-in-setup"]').text()).toBe(
-        'greetingInSetup: Hello, setup!',
+        'Hello, setup',
       );
     });
 
-    it('should render greeting in asyncData', () => {
-      expect(
-        wrapper.find('[data-testid="greeting-in-async-data"]').text(),
-      ).toBe('greetingInAsyncData: Hello, asyncData!');
-    });
-
-    it('should render greeting in data', () => {
-      expect(wrapper.find('[data-testid="greeting-in-data"]').text()).toBe(
-        'greetingInData: Hello, data!',
+    it('should render greeting in data and asyncData', () => {
+      expect(wrapper.find('[data-testid="greeting-in-data1"]').text()).toBe(
+        'Hello, data1',
+      );
+      expect(wrapper.find('[data-testid="greeting-in-data2"]').text()).toBe(
+        'Hello, overwritten by asyncData',
       );
     });
 
     it('should render greeting in computed', () => {
       expect(wrapper.find('[data-testid="greeting-in-computed"]').text()).toBe(
-        'greetingInComputed: Hello, computed property!',
+        'Hello, computed property',
+      );
+      expect(wrapper.find('[data-testid="computed-data1"]').text()).toBe(
+        'Hello, data1',
+      );
+      expect(
+        wrapper.find('[data-testid="computed-greeting-in-methods"]').text(),
+      ).toBe('Hello, method');
+    });
+
+    it('should render greeting in computed', () => {
+      expect(wrapper.find('[data-testid="greeting-in-methods"]').text()).toBe(
+        'Hello, method',
+      );
+      expect(wrapper.find('[data-testid="return-data1"]').text()).toBe(
+        'Hello, data1',
+      );
+      expect(wrapper.find('[data-testid="return-computed-data1"]').text()).toBe(
+        'Hello, data1',
       );
     });
   });
