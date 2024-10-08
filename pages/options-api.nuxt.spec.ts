@@ -39,7 +39,7 @@ describe('OptionsApiPage', () => {
       ).toBe('Hello, method');
     });
 
-    it('should render greeting in computed', () => {
+    it('should render greeting in methods', () => {
       expect(wrapper.find('[data-testid="greeting-in-methods"]').text()).toBe(
         'Hello, method',
       );
@@ -49,6 +49,28 @@ describe('OptionsApiPage', () => {
       expect(wrapper.find('[data-testid="return-computed-data1"]').text()).toBe(
         'Hello, data1',
       );
+    });
+
+    describe('on events', () => {
+      beforeEach(() => {
+        vi.spyOn(console, 'error').mockImplementation((message) => {
+          console.log('[spy] console.error has been called', message);
+        });
+      });
+
+      afterEach(() => {
+        vi.restoreAllMocks();
+      });
+
+      it('should not output error when native button is clicked', async () => {
+        await wrapper.find('[data-testid="native-button"]').trigger('click');
+        expect(console.error).not.toHaveBeenCalled();
+      });
+
+      it('should not output error when button in component is clicked', async () => {
+        await wrapper.find('[data-testid="test-button"]').trigger('click');
+        expect(console.error).not.toHaveBeenCalled();
+      });
     });
   });
 
@@ -89,7 +111,7 @@ describe('OptionsApiPage', () => {
       ).toBe('Hello, method');
     });
 
-    it('should render greeting in computed', () => {
+    it('should render greeting in methods', () => {
       expect(wrapper.find('[data-testid="greeting-in-methods"]').text()).toBe(
         'Hello, method',
       );
@@ -99,6 +121,28 @@ describe('OptionsApiPage', () => {
       expect(wrapper.find('[data-testid="return-computed-data1"]').text()).toBe(
         'Hello, data1',
       );
+    });
+
+    describe('on events', () => {
+      beforeEach(() => {
+        vi.spyOn(console, 'error').mockImplementation((message) => {
+          console.error('[spy]', message);
+        });
+      });
+
+      afterEach(() => {
+        vi.restoreAllMocks();
+      });
+
+      it('should not output error when native button is clicked', async () => {
+        await wrapper.find('[data-testid="native-button"]').trigger('click');
+        expect(console.error).not.toHaveBeenCalled();
+      });
+
+      it('should not output error when button in component is clicked', async () => {
+        await wrapper.find('[data-testid="test-button"]').trigger('click');
+        expect(console.error).not.toHaveBeenCalled();
+      });
     });
   });
 });

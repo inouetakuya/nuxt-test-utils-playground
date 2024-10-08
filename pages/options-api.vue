@@ -27,12 +27,23 @@
     <li data-testid="return-computed-data1">
       {{ returnComputedData1() }}
     </li>
+    <li>
+      <button data-testid="native-button" @click="onClickNativeButton">
+        Native button
+      </button>
+    </li>
+    <li>
+      <TestButton @test-click="onClickButtonInComponent" />
+    </li>
   </ul>
 </template>
 
 <script lang="ts">
+import TestButton from '~/components/TestButton.vue';
+
 export default defineNuxtComponent({
   name: 'OptionsApiPage',
+  components: { TestButton },
   setup() {
     return {
       greetingInSetup: 'Hello, setup',
@@ -69,6 +80,16 @@ export default defineNuxtComponent({
     },
     returnComputedData1() {
       return this.computedData1;
+    },
+    onClickNativeButton() {
+      if (this === undefined) {
+        console.error('this in onClickNativeButton is undefined');
+      }
+    },
+    onClickButtonInComponent() {
+      if (this === undefined) {
+        console.error('this in onClickButtonInComponent is undefined');
+      }
     },
   },
 });
