@@ -5,5 +5,7 @@ defineEmits<{
 </script>
 
 <template>
-  <button data-testid="test-button" @click="$emit('test-click')">Test</button>
+  <button data-testid="test-button" @click="$emit('test-click')">
+    Test button in component
+  </button>
 </template>

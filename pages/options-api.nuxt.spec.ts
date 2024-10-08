@@ -51,39 +51,26 @@ describe('OptionsApiPage', () => {
       );
     });
 
-    it.skip('should update greeting in data3 by async method', async () => {
-      vi.useFakeTimers();
+    describe('on events', () => {
+      beforeEach(() => {
+        vi.spyOn(console, 'error').mockImplementation((message) => {
+          console.log('[spy] console.error has been called', message);
+        });
+      });
 
-      expect(wrapper.find('[data-testid="greeting-in-data3"]').text()).toBe(
-        'Hello, data3',
-      );
+      afterEach(() => {
+        vi.restoreAllMocks();
+      });
 
-      await wrapper
-        .find('[data-testid="update-data3-button"]')
-        .trigger('click');
+      it('should not output error when native button is clicked', async () => {
+        await wrapper.find('[data-testid="native-button"]').trigger('click');
+        expect(console.error).not.toHaveBeenCalled();
+      });
 
-      await vi.runAllTimersAsync();
-
-      // FIXME: Received: "Hello, data3"
-      expect(wrapper.find('[data-testid="greeting-in-data3"]').text()).toBe(
-        'Updated by async method',
-      );
-    });
-
-    it('should update greeting in data4 by child component event', async () => {
-      vi.useFakeTimers();
-
-      expect(wrapper.find('[data-testid="greeting-in-data4"]').text()).toBe(
-        'Hello, data4',
-      );
-
-      await wrapper.find('[data-testid="test-button"]').trigger('click');
-
-      await vi.runAllTimersAsync();
-
-      expect(wrapper.find('[data-testid="greeting-in-data4"]').text()).toBe(
-        'Updated by async method',
-      );
+      it('should not output error when button in component is clicked', async () => {
+        await wrapper.find('[data-testid="test-button"]').trigger('click');
+        expect(console.error).not.toHaveBeenCalled();
+      });
     });
   });
 
@@ -136,22 +123,26 @@ describe('OptionsApiPage', () => {
       );
     });
 
-    it('should update greeting in data3 by async method', async () => {
-      vi.useFakeTimers();
+    describe('on events', () => {
+      beforeEach(() => {
+        vi.spyOn(console, 'error').mockImplementation((message) => {
+          console.error('[spy]', message);
+        });
+      });
 
-      expect(wrapper.find('[data-testid="greeting-in-data3"]').text()).toBe(
-        'Hello, data3',
-      );
+      afterEach(() => {
+        vi.restoreAllMocks();
+      });
 
-      await wrapper
-        .find('[data-testid="update-data3-button"]')
-        .trigger('click');
+      it('should not output error when native button is clicked', async () => {
+        await wrapper.find('[data-testid="native-button"]').trigger('click');
+        expect(console.error).not.toHaveBeenCalled();
+      });
 
-      await vi.runAllTimersAsync();
-
-      expect(wrapper.find('[data-testid="greeting-in-data3"]').text()).toBe(
-        'Updated by async method',
-      );
+      it('should not output error when button in component is clicked', async () => {
+        await wrapper.find('[data-testid="test-button"]').trigger('click');
+        expect(console.error).not.toHaveBeenCalled();
+      });
     });
   });
 });

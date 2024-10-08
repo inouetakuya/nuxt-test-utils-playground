@@ -9,12 +9,6 @@
     <li data-testid="greeting-in-data2">
       {{ greetingInData2 }}
     </li>
-    <li data-testid="greeting-in-data3">
-      {{ greetingInData3 }}
-    </li>
-    <li data-testid="greeting-in-data4">
-      {{ greetingInData4 }}
-    </li>
     <li data-testid="greeting-in-computed">
       {{ greetingInComputed }}
     </li>
@@ -34,12 +28,12 @@
       {{ returnComputedData1() }}
     </li>
     <li>
-      <button data-testid="update-data3-button" @click="updateData3Async">
-        Update data3 async
+      <button data-testid="native-button" @click="onClickNativeButton">
+        Native button
       </button>
     </li>
     <li>
-      <TestButton @test-click="updateData4Async" />
+      <TestButton @test-click="onClickButtonInComponent" />
     </li>
   </ul>
 </template>
@@ -64,8 +58,6 @@ export default defineNuxtComponent({
     return {
       greetingInData1: 'Hello, data1',
       greetingInData2: 'Hello, data2',
-      greetingInData3: 'Hello, data3',
-      greetingInData4: 'Hello, data4',
     };
   },
   computed: {
@@ -89,21 +81,15 @@ export default defineNuxtComponent({
     returnComputedData1() {
       return this.computedData1;
     },
-    async updateData3Async(): Promise<void> {
-      const data3 = await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve('Updated by async method');
-        }, 1000);
-      });
-      this.greetingInData3 = data3;
+    onClickNativeButton() {
+      if (this === undefined) {
+        console.error('this in onClickNativeButton is undefined');
+      }
     },
-    async updateData4Async(): Promise<void> {
-      const data4 = await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve('Updated by async method');
-        }, 1000);
-      });
-      this.greetingInData4 = data4;
+    onClickButtonInComponent() {
+      if (this === undefined) {
+        console.error('this in onClickButtonInComponent is undefined');
+      }
     },
   },
 });
