@@ -69,6 +69,22 @@ describe('OptionsApiPage', () => {
         'Updated by async method',
       );
     });
+
+    it('should update greeting in data4 by child component event', async () => {
+      vi.useFakeTimers();
+
+      expect(wrapper.find('[data-testid="greeting-in-data4"]').text()).toBe(
+        'Hello, data4',
+      );
+
+      await wrapper.find('[data-testid="test-button"]').trigger('click');
+
+      await vi.runAllTimersAsync();
+
+      expect(wrapper.find('[data-testid="greeting-in-data4"]').text()).toBe(
+        'Updated by async method',
+      );
+    });
   });
 
   describe('Using mount', () => {

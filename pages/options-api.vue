@@ -12,6 +12,9 @@
     <li data-testid="greeting-in-data3">
       {{ greetingInData3 }}
     </li>
+    <li data-testid="greeting-in-data4">
+      {{ greetingInData4 }}
+    </li>
     <li data-testid="greeting-in-computed">
       {{ greetingInComputed }}
     </li>
@@ -35,12 +38,18 @@
         Update data3 async
       </button>
     </li>
+    <li>
+      <TestButton @test-click="updateData4Async" />
+    </li>
   </ul>
 </template>
 
 <script lang="ts">
+import TestButton from '~/components/TestButton.vue';
+
 export default defineNuxtComponent({
   name: 'OptionsApiPage',
+  components: { TestButton },
   setup() {
     return {
       greetingInSetup: 'Hello, setup',
@@ -56,6 +65,7 @@ export default defineNuxtComponent({
       greetingInData1: 'Hello, data1',
       greetingInData2: 'Hello, data2',
       greetingInData3: 'Hello, data3',
+      greetingInData4: 'Hello, data4',
     };
   },
   computed: {
@@ -86,6 +96,14 @@ export default defineNuxtComponent({
         }, 1000);
       });
       this.greetingInData3 = data3;
+    },
+    async updateData4Async(): Promise<void> {
+      const data4 = await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('Updated by async method');
+        }, 1000);
+      });
+      this.greetingInData4 = data4;
     },
   },
 });
