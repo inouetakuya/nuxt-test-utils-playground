@@ -50,6 +50,24 @@ describe('OptionsApiPage', () => {
         'Hello, data1',
       );
     });
+
+    it('should update greeting in data3 by async method', async () => {
+      vi.useFakeTimers();
+
+      expect(wrapper.find('[data-testid="greeting-in-data3"]').text()).toBe(
+        'Hello, data3',
+      );
+
+      await wrapper
+        .find('[data-testid="update-data3-button"]')
+        .trigger('click');
+
+      await vi.runAllTimersAsync();
+
+      expect(wrapper.find('[data-testid="greeting-in-data3"]').text()).toBe(
+        'Updated by async method',
+      );
+    });
   });
 
   describe('Using mount', () => {
@@ -98,6 +116,24 @@ describe('OptionsApiPage', () => {
       );
       expect(wrapper.find('[data-testid="return-computed-data1"]').text()).toBe(
         'Hello, data1',
+      );
+    });
+
+    it('should update greeting in data3 by async method', async () => {
+      vi.useFakeTimers();
+
+      expect(wrapper.find('[data-testid="greeting-in-data3"]').text()).toBe(
+        'Hello, data3',
+      );
+
+      await wrapper
+        .find('[data-testid="update-data3-button"]')
+        .trigger('click');
+
+      await vi.runAllTimersAsync();
+
+      expect(wrapper.find('[data-testid="greeting-in-data3"]').text()).toBe(
+        'Updated by async method',
       );
     });
   });

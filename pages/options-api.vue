@@ -9,6 +9,9 @@
     <li data-testid="greeting-in-data2">
       {{ greetingInData2 }}
     </li>
+    <li data-testid="greeting-in-data3">
+      {{ greetingInData3 }}
+    </li>
     <li data-testid="greeting-in-computed">
       {{ greetingInComputed }}
     </li>
@@ -26,6 +29,11 @@
     </li>
     <li data-testid="return-computed-data1">
       {{ returnComputedData1() }}
+    </li>
+    <li>
+      <button data-testid="update-data3-button" @click="updateData3Async">
+        Update data3 async
+      </button>
     </li>
   </ul>
 </template>
@@ -47,6 +55,7 @@ export default defineNuxtComponent({
     return {
       greetingInData1: 'Hello, data1',
       greetingInData2: 'Hello, data2',
+      greetingInData3: 'Hello, data3',
     };
   },
   computed: {
@@ -69,6 +78,14 @@ export default defineNuxtComponent({
     },
     returnComputedData1() {
       return this.computedData1;
+    },
+    async updateData3Async(): Promise<void> {
+      const data3 = await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('Updated by async method');
+        }, 1000);
+      });
+      this.greetingInData3 = data3;
     },
   },
 });
